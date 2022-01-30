@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
+import { DxFormModule, DxTextAreaModule } from "devextreme-angular";
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -13,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     DxDataGridModule,
     HttpClientModule,
+    DxFormModule,
+    DxTextAreaModule
   ],
   bootstrap: [AppComponent]
 })

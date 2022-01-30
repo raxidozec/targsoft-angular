@@ -1,18 +1,61 @@
 <div id="app-container">
-  <dx-data-grid id="gridContainer"
-                [dataSource]="postDataSource"
-                keyExpr="id"
-                [showBorders]="true"
-  >
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="postDataSource"
+    keyExpr="id"
+    [showBorders]="true">
 <!--    Editing-->
     <dxo-editing
       mode="popup"
       [allowDeleting]="true"
       [allowAdding]="true">
+      <dxo-popup
+        [showTitle]="true"
+        title="Add new post"
+        width="50%"
+        height="40%">
+      </dxo-popup>
+      <dxo-form
+        [(formData)]="postDataSource"
+        labelLocation="top"
+        [colCount]="2">
+          <dxi-item dataField="id"
+                    [editorOptions]="{ placeholder: 'Add Id...' }">
+            <dxi-validation-rule
+              type="required"
+              message="ID is required">
+            </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item dataField="userId"
+                    [editorOptions]="{ placeholder: 'Add UserID...' }">
+            <dxi-validation-rule
+              type="required"
+              message="UserID is required">
+            </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item dataField="title"
+                    editorType="dxTextBox"
+                    [colSpan]="2"
+                    [editorOptions]="{ placeholder: 'Add title...' }">
+            <dxi-validation-rule
+              type="required"
+              message="Title is required">
+            </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item dataField="body"
+                    editorType="dxTextArea"
+                    [colSpan]="2"
+                    [editorOptions]="{ placeholder: 'Add text...' }">
+            <dxi-validation-rule
+              type="required"
+              message="Post content is required">
+            </dxi-validation-rule>
+          </dxi-item>
+      </dxo-form>
     </dxo-editing>
 
 <!--    FooterGrid-->
-    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-paging [pageSize]="20"></dxo-paging>
     <dxo-pager
       [showPageSizeSelector]="true"
       [allowedPageSizes]="[10, 20, 30]"
@@ -26,32 +69,21 @@
 
 <!--    Grid-->
     <dxi-column
-      dataField="userId"
-      alignment="left"
-      caption="UserID"
-      dataType="number"
-      [width]="100">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
-    </dxi-column>
-    <dxi-column
       dataField="id"
       alignment="left"
       caption="Id"
       dataType="number"
       [width]="70">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
     </dxi-column>
     <dxi-column
       dataField="title"
       caption="Title"
-      dataType="string">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
+      dataType="string"
+      width="400">
     </dxi-column>
     <dxi-column
       dataField="body"
-      caption="Post"
-      dataType="string">
-      <dxi-validation-rule type="required"></dxi-validation-rule>
+      caption="Post">
     </dxi-column>
 
 <!--    LoadPannel-->

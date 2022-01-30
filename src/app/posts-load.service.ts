@@ -9,15 +9,13 @@ export interface IPost {
   body: string;
 }
 
-let posts: IPost[] = [];
-
 @Injectable({
   providedIn: 'root'
 })
 export class PostsLoadService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
+
   getPosts(): Observable<IPost[]> {
     const url: string = 'https://jsonplaceholder.typicode.com/posts';
     return this.http.get<IPost[]>(url);
